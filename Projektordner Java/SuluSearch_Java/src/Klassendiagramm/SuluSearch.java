@@ -118,6 +118,13 @@ public class SuluSearch
         // TODO
         // End of user code
     }
+    
+    public void changeLanguage()
+    {
+        // Start of user code for SuluSearch.actionlistener1()
+        // TODO
+        // End of user code
+    }
 
 
     // Start of user code for extra methods
