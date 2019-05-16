@@ -10,7 +10,9 @@
 package Klassendiagramm;
 
 //Start of user code for imports
-
+import java.io.File;
+import java.io.FileInputStream;
+import java.nio.file.Path;
 //End of user code for imports
 
 /**
@@ -21,8 +23,8 @@ package Klassendiagramm;
 public class SuluSearch 
 {
     // Owned attributes
-    public String Buttons[];
-    public String TextFields[];
+    public String buttons[];
+    public String textFields[];
 
 
     // Start of user code for extra fields
@@ -34,7 +36,7 @@ public class SuluSearch
     public SuluSearch ()
     {
         // Start of user code for the default constructor
-        super();
+        //super();
         // Attributes TODO
         ;
         ;
@@ -94,11 +96,20 @@ public class SuluSearch
 
     /**
      */
-    public void search()
+    public int search(File f, String searchTerm)
     {
-        // Start of user code for SuluSearch.search()
-        // TODO
-        // End of user code
+    	int hits = 0;
+        //code
+    	//getResponse();
+    	return hits;
+    }
+    
+    public int search(Path p, String searchTerm)
+    {
+    	int hits = 0;
+        //code
+    	//getResponse();
+    	return hits;
     }
 
     /**
@@ -124,6 +135,10 @@ public class SuluSearch
         // Start of user code for SuluSearch.actionlistener1()
         // TODO
         // End of user code
+    }
+    
+    public void getResponse(int hits, String newText, String filename, String searchterm) {
+    	
     }
 
 

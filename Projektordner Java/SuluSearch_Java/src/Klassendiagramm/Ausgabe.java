@@ -18,7 +18,7 @@ package Klassendiagramm;
  * 
  * @author Team7
  */
-public class Ausgabe 
+public class Ausgabe extends SuluSearch 
 {
     // Owned attributes
     public String Textfelder[];
@@ -94,7 +94,7 @@ public class Ausgabe
 
     /**
      */
-    public void Actionlistener()
+    public void changeLanguage()
     {
         // Start of user code for Ausgabe.Actionlistener()
         // TODO
@@ -103,6 +103,7 @@ public class Ausgabe
 
 
     // Start of user code for extra methods
+    
     // End of user code for extra methods
 
     // Start of user code for Ausgabe.main	
