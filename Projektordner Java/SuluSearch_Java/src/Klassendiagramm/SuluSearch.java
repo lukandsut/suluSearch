@@ -1,25 +1,13 @@
-/*******************************************************************************
- * Copyright (c) 2007 TOPCASED. All rights reserved. This program
- * and the accompanying materials are made available under the terms of the
- * Eclipse Public License v1.0 which accompanies this distribution, and is
- * available at http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors: Topcased contributors and others - initial API and implementation
-*******************************************************************************/
+//import java.awt.*;
+//import java.awt.event.*;
+import javax.swing.*;
 
 package Klassendiagramm;
 
-//Start of user code for imports
 
-//End of user code for imports
-
-/**
- * Class SuluSearch<br />
- * 
- * @author Team7
- */
 public class SuluSearch 
 {
+	
     // Owned attributes
     public String Buttons[];
     public String TextFields[];
@@ -33,6 +21,7 @@ public class SuluSearch
      */
     public SuluSearch ()
     {
+    	
         // Start of user code for the default constructor
         super();
         // Attributes TODO
@@ -130,3 +119,9 @@ public class SuluSearch
     // End of user code
 	
 }
+
+
+	public static void main(String[] args) {
+		
+		
+	}
