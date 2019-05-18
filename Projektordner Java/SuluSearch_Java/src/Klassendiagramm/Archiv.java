@@ -22,7 +22,7 @@ public class Archiv
 {
     // Owned attributes
     public String Pfad;
-    public String Artikel[];
+    public Artikel artikel[];
 
 
     // Start of user code for extra fields
@@ -45,10 +45,7 @@ public class Archiv
     // End of user code for parameterized constructors
 
     // Accessors
-    /**
-     * Return Pfad
-     * @return String
-     */
+   
     public String getPfad()
     {
         // Start of user code for Archiv.getPfad():String
@@ -56,10 +53,7 @@ public class Archiv
         // End of user code
     }
 
-    /**
-     * Set the value of Pfad
-     * @param Pfad
-     */
+ 
     public void setPfad(String Pfad)
     {
         // Start of user code for Archiv.setPfad(String)
@@ -67,27 +61,7 @@ public class Archiv
         // End of user code
     }
 
-    /**
-     * Return Artikel[]
-     * @return String
-     */
-    public String getArtikel[]()
-    {
-        // Start of user code for Archiv.getArtikel[]():String
-        return Artikel[];
-        // End of user code
-    }
-
-    /**
-     * Set the value of Artikel[]
-     * @param Artikel[]
-     */
-    public void setArtikel[](String Artikel[])
-    {
-        // Start of user code for Archiv.setArtikel[](String)
-        this.Artikel[] = Artikel[];
-        // End of user code
-    }
+ 
 
 
     // Start of user code for extra methods

@@ -11,8 +11,10 @@ package Klassendiagramm;
 
 //Start of user code for imports
 import java.io.File;
-import java.io.FileInputStream;
+//import java.io.FileInputStream;
 import java.nio.file.Path;
+import java.awt.*;
+import java.awt.event.*;
 //End of user code for imports
 
 /**
@@ -20,77 +22,89 @@ import java.nio.file.Path;
  * 
  * @author Team7
  */
-public class SuluSearch 
+public class SuluSearch extends Panel
 {
     // Owned attributes
-    public String buttons[];
-    public String textFields[];
-
-
-    // Start of user code for extra fields
-    // End of user code for extra fields
-
-    /**
-     * Default constructor
-     */
+	TextField tfSearchTerm;
+	TextField tfFile;
+	Label lSulu;
+	Label lFile;
+	Label lSearchTerm;
+	Button searchButton;
+	Button closeButton;
+	Button german;
+	Button english;
+	Panel mainscreen;
+	Panel resultscreen;
+	GridBagConstraints c;
+	GridBagLayout gl;
+	
+ 
     public SuluSearch ()
     {
-        // Start of user code for the default constructor
-        //super();
-        // Attributes TODO
-        ;
-        ;
-        // End of user code for the default constructor
+    	//Layout
+		this.setFont(new Font("MyFond", Font.PLAIN, 24));
+		this.setLayout(new CardLayout());
+		GridBagConstraints c = new GridBagConstraints();
+		mainscreen = new Panel();
+		gl =  new GridBagLayout();
+		mainscreen.setLayout(gl);
+		//resultscreen = new Panel();
+		//resultscreen.setLayout(gl);
+		c = new GridBagConstraints();
+		this.add(mainscreen);		
+		
+		//Components
+		lSulu = new Label("SuluSearch");
+		lFile = new Label("Bitte einen Datei- oder Verzeichnisnamen eingeben!");
+		lSearchTerm = new Label("Bitte einen Suchbegriff eingeben");
+		tfSearchTerm = new TextField();
+		tfFile = new TextField();
+		searchButton = new Button("Suchen");
+		closeButton = new Button("Schlieﬂen");
+		german = new Button("Deu");
+		english = new Button("Eng");		
+		
+		//Design
+		c.gridwidth = 5;
+		c.gridx = 1;
+		c.gridy = 0;
+		gl.setConstraints(lSulu,c);
+        mainscreen.add(lSulu);
+        c.gridx = 3;
+        gl.setConstraints(english,c);
+        mainscreen.add(english);
+        c.gridy = GridBagConstraints.RELATIVE;
+        gl.setConstraints(german,c);
+        mainscreen.add(german);
+        c.gridwidth = 1;
+        c.gridx = 1;
+        c.gridy = 2;
+        gl.setConstraints(lFile,c);
+        mainscreen.add(lFile);
+        c.gridy = 3;
+        c.ipadx = 400;
+        gl.setConstraints(tfFile,c);
+        mainscreen.add(tfFile);
+        c.gridy = 4;
+        c.ipadx = 0;
+        gl.setConstraints(lSearchTerm,c);
+        mainscreen.add(lSearchTerm);
+        c.gridy = 5;
+        c.ipadx = 400;
+        gl.setConstraints(tfSearchTerm,c);
+        mainscreen.add(tfSearchTerm);
+        c.gridy = 6;
+        c.gridwidth = 2;
+        c.ipadx = 200;
+        c.insets = new Insets(10,15,10,15);
+        c.anchor = GridBagConstraints.LINE_START;
+        gl.setConstraints(searchButton,c);
+        mainscreen.add(searchButton);
+        c.anchor = GridBagConstraints.LINE_END;
+        gl.setConstraints(closeButton,c);
+        mainscreen.add(closeButton);
     }
-
-    // Start of user code for parameterized constructors
-    // End of user code for parameterized constructors
-
-    // Accessors
-    /**
-     * Return Buttons[]
-     * @return String
-     */
-    public String getButtons[]()
-    {
-        // Start of user code for SuluSearch.getButtons[]():String
-        return Buttons[];
-        // End of user code
-    }
-
-    /**
-     * Set the value of Buttons[]
-     * @param Buttons[]
-     */
-    public void setButtons[](String Buttons[])
-    {
-        // Start of user code for SuluSearch.setButtons[](String)
-        this.Buttons[] = Buttons[];
-        // End of user code
-    }
-
-    /**
-     * Return TextFields[]
-     * @return String
-     */
-    public String getTextFields[]()
-    {
-        // Start of user code for SuluSearch.getTextFields[]():String
-        return TextFields[];
-        // End of user code
-    }
-
-    /**
-     * Set the value of TextFields[]
-     * @param TextFields[]
-     */
-    public void setTextFields[](String TextFields[])
-    {
-        // Start of user code for SuluSearch.setTextFields[](String)
-        this.TextFields[] = TextFields[];
-        // End of user code
-    }
-
 
     // Methods 
 
@@ -99,16 +113,16 @@ public class SuluSearch
     public int search(File f, String searchTerm)
     {
     	int hits = 0;
-        //code
-    	//getResponse();
+    	//get results
+    	//open responsescreen and fill
     	return hits;
     }
     
     public int search(Path p, String searchTerm)
     {
     	int hits = 0;
-        //code
-    	//getResponse();
+        //get results
+    	//open responsescreen and fill
     	return hits;
     }
 
@@ -137,18 +151,30 @@ public class SuluSearch
         // End of user code
     }
     
-    public void getResponse(int hits, String newText, String filename, String searchterm) {
-    	
-    }
-
+   // @Override
+    /*public Dimension getPreferredSize() {
+    	Dimension d  = new Dimension(1250,750);
+    	return d;
+    }*/
 
     // Start of user code for extra methods
     // End of user code for extra methods
 
     // Start of user code for SuluSearch.main	
-    /*public static void main (String[] args) {	
+    public static void main (String[] args) {	
+    	SuluSearch s = new SuluSearch();
+		Frame f = new Frame("SuluFrame");		
+		f.add(s);
+		f.addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent e) {
+				System.exit(0);
+			}
+		});
+		f.pack();
+		f.setVisible(true);
+		
     }
-    */
+    
     // End of user code
 	
 }

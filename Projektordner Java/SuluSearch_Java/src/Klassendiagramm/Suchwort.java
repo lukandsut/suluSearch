@@ -70,13 +70,6 @@ public class Suchwort
 
     /**
      */
-    public void setText()
-    {
-        // Start of user code for Suchwort.setText()
-        // TODO
-        // End of user code
-    }
-
    
 
 
