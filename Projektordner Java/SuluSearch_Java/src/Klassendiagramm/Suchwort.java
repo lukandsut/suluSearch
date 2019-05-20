@@ -21,21 +21,18 @@ package Klassendiagramm;
 public class Suchwort 
 {
     // Owned attributes
-    public String Text;
+    private String text;
 
 
     // Start of user code for extra fields
     // End of user code for extra fields
 
-    /**
-     * Default constructor
-     */
-    public Suchwort ()
+ 
+    public Suchwort (String content)
     {
-        // Start of user code for the default constructor
-        super();
+        
         // Attributes TODO
-        this.Text = null;
+        this.text = content;
         // End of user code for the default constructor
     }
 
@@ -50,7 +47,7 @@ public class Suchwort
     public String getText()
     {
         // Start of user code for Suchwort.getText():String
-        return Text;
+        return text;
         // End of user code
     }
 
@@ -61,7 +58,7 @@ public class Suchwort
     public void setText(String Text)
     {
         // Start of user code for Suchwort.setText(String)
-        this.Text = Text;
+        this.text = Text;
         // End of user code
     }
 
