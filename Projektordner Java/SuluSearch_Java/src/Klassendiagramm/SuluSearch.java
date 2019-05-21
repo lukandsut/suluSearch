@@ -9,8 +9,6 @@
 
 package Klassendiagramm;
 
-//Start of user code for imports
-
 import java.io.*;
 import java.util.Scanner;
 import java.util.regex.Matcher;
@@ -23,14 +21,12 @@ import javax.swing.text.DefaultHighlighter;
 import javax.swing.text.Highlighter;
 import javax.swing.text.Highlighter.HighlightPainter;
 
-//End of user code for imports
 
 /**
- * Class SuluSearch<br />
+ * Class SuluSearch
  * 
  * @author Team7
  */
-
 public class SuluSearch extends Panel implements ActionListener {
 	// Owned attributes
 	TextField tfSearchTerm;
@@ -77,6 +73,7 @@ public class SuluSearch extends Panel implements ActionListener {
 	byte x, y, i;
 	Matcher matcher;
 	Pattern pattern;
+
 
 	public SuluSearch() {
 		// Layout
@@ -243,7 +240,6 @@ public class SuluSearch extends Panel implements ActionListener {
 		resultscreen.add(closeButton2);
 	}
 
-	// Actionlisteners
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -303,10 +299,13 @@ public class SuluSearch extends Panel implements ActionListener {
 		}
 	}
 
-	// Methods
 
-	/**
-	 */
+/**
+ * 
+ * @param f
+ * @param sw
+ * @return
+ */
 	public int search(Artikel f, Suchwort sw) {
 
 		StringBuilder sb = new StringBuilder();
@@ -361,11 +360,15 @@ public class SuluSearch extends Panel implements ActionListener {
 		return hitcount;
 	} // ./bible/bible_part1.txt
 
-	/**
-	 */
+
 	public void close() {
 		System.exit(0);
 	}
+	
+	/**
+	 * 
+	 * @param err
+	 */
 
 	public void myError(String err) {
 		tfResults.setText(err);
@@ -419,10 +422,10 @@ public class SuluSearch extends Panel implements ActionListener {
 		return d;
 	}
 
-	// Start of user code for extra methods
-	// End of user code for extra methods
-
-	// Start of user code for SuluSearch.main
+/**
+ * 
+ * @param args
+ */
 	public static void main(String[] args) {
 		SuluSearch s = new SuluSearch();
 		Frame f = new Frame("SuluSearch");

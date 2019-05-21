@@ -13,50 +13,35 @@
 package Klassendiagramm;
 
 /**
- * Class Suchwort<br />
+ * Class Suchwort
  * 
  * @author Team7
  */
 public class Suchwort {
-	// Owned attributes
 	private String text;
-
-	// Start of user code for extra fields
-	// End of user code for extra fields
 /**
- * 
- * @param content
+ * Suchwort
+ * @param content Inhalt des Suchwortes
  */
 	public Suchwort(String content) {
-
-		// Attributes TODO
 		this.text = content;
-		// End of user code for the default constructor
 	}
 
-	// Start of user code for parameterized constructors
-	// End of user code for parameterized constructors
-
-	// Accessors
 	/**
-	 * Return Text
+	 * This Returns the Text
 	 * 
-	 * @return String
+	 * @return the Text
 	 */
 	public String getText() {
-		// Start of user code for Suchwort.getText():String
 		return text;
-		// End of user code
 	}
 
 	/**
 	 * Set the value of Text
 	 * 
-	 * @param Text
+	 * @param Text the Text
 	 */
 	public void setText(String Text) {
-		// Start of user code for Suchwort.setText(String)
 		this.text = Text;
-		// End of user code
 	}
 }

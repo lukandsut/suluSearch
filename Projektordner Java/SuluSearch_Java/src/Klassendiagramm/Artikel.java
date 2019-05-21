@@ -9,49 +9,32 @@
 
 package Klassendiagramm;
 
-//Start of user code for imports
 import java.io.*;
-//End of user code for imports
-
 /**
- * Class Artikel<br />
+ * Class Artikel
  * 
  * @author Team7
  */
 public class Artikel {
-	// Owned attributes
 	public File pfad;
 	public String name;
-
-	// Start of user code for extra fields
-	// End of user code for extra fields
-
-	/**
-	 * Default constructor
-	 */
+/**
+ * 
+ * @param f
+ * @param s
+ */
 	public Artikel(File f, String s) {
-		// Start of user code for the default constructor
-
-		// Attributes TODO
 		;
 		this.name = s;
 		this.pfad = f;
-		// End of user code for the default constructor
 	}
 
-	// Start of user code for parameterized constructors
-	// End of user code for parameterized constructors
-
-	// Accessors
-	/**
-	 * Return Pfad
-	 * 
-	 * @return String
-	 */
+/**
+ * this returns the Pfad
+ * @return Pfad 
+ */
 	public File getPfad() {
-		// Start of user code for Artikel.getPfad():String
 		return pfad;
-		// End of user code
 	}
 
 	/**
@@ -60,20 +43,15 @@ public class Artikel {
 	 * @param Pfad
 	 */
 	public void setPfad(File Pfad) {
-		// Start of user code for Artikel.setPfad(String)
 		this.pfad = Pfad;
-		// End of user code
 	}
 
-	/**
-	 * Return Text
-	 * 
-	 * @return String
-	 */
+/**
+ * 
+ * @return the name of the pfad
+ */
 	public String getName() {
-		// Start of user code for Artikel.getText():String
 		return name;
-		// End of user code
 	}
 
 	/**
@@ -82,18 +60,6 @@ public class Artikel {
 	 * @param Text
 	 */
 	public void setName(String Text) {
-		// Start of user code for Artikel.setText(String)
 		this.name = Text;
-		// End of user code
 	}
-
-	// Start of user code for extra methods
-	// End of user code for extra methods
-
-	// Start of user code for Artikel.main
-	/*
-	 * public static void main (String[] args) { }
-	 */
-	// End of user code
-
 }
