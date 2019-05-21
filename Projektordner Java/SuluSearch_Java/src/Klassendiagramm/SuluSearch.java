@@ -13,14 +13,10 @@ package Klassendiagramm;
 //Start of user code for imports
 
 import java.io.*;
-
-import javax.swing.JOptionPane;
-//import java.io.FileInputStream;
-import java.nio.file.Path;
 import java.util.Scanner;
-import java.util.Vector;
 import java.awt.*;
 import java.awt.event.*;
+import javax.swing.*;
 
 //End of user code for imports
 
@@ -34,7 +30,8 @@ public class SuluSearch extends Panel implements ActionListener
     // Owned attributes
 	TextField tfSearchTerm;
 	TextField tfFile;
-	TextArea tfResults;
+	JScrollPane scroll;
+	JTextArea tfResults;
 	Label lSulu;
 	Label lSulu2;
 	Label lFile;
@@ -44,6 +41,7 @@ public class SuluSearch extends Panel implements ActionListener
 	Label trueOrigin;
 	Label hits;
 	Label trueHits;
+	Label currPage;
 	Button searchButton;
 	Button closeButton;
 	Button closeButton2;
@@ -58,12 +56,19 @@ public class SuluSearch extends Panel implements ActionListener
 	GridBagLayout gl;
 	CardLayout cl;
 	boolean ger = true;
-	boolean furtherData = false;
-	boolean previousData = false;
 	String error1;
-	String error2;
 	String error3;
+	String noResults;
+	String lLine;
+	String wrongFile;
 	int hitcount;
+	int linecount;
+	Archiv arch;
+	Artikel art;
+	String searchTerm;
+	String unvalidDir;
+	byte x, y, i;
+	
  
     public SuluSearch ()
     {
@@ -94,7 +99,9 @@ public class SuluSearch extends Panel implements ActionListener
 		trueHits = new Label("");
 		tfSearchTerm = new TextField();
 		tfFile = new TextField();
-		tfResults = new TextArea("", 1,1,TextArea.SCROLLBARS_BOTH);
+		tfResults = new JTextArea("", 1,1);
+		tfResults.setFont(new Font("myFont", Font.ITALIC, 20));
+		scroll = new JScrollPane(tfResults);
 		searchButton = new Button("Suchen");
 		searchButton.addActionListener(this);
 		closeButton = new Button("Schließen");
@@ -112,10 +119,15 @@ public class SuluSearch extends Panel implements ActionListener
 		arrow2 = new Button("<--");
 		arrow2.addActionListener(this);
 		error1 = "Sie müssen einen Wert für Suchwort und Datei festlegen!";
-		error1 = "Feher!";
 		error3 = "Ein Fehler ist beim Lesen folgender Datei aufgetreten: ";
 		hitcount = 0;
-		
+		linecount = 0;
+		lLine = "Linie: ";
+		noResults = "Es wurden in der Datei keine Ergebnisse zu diesem Suchwort gefunden!";
+		wrongFile = "Leider handelt es sich hierbei nicht um eine gültige Datei!";
+		unvalidDir = "Ungültiges oder leeres Verzeichnis!";
+		x = y = 1;
+		currPage = new Label(x + "/" + y);
 		
 		//Design
 		//Mainscreen
@@ -173,10 +185,10 @@ public class SuluSearch extends Panel implements ActionListener
         gl.setConstraints(results,c);
         resultscreen.add(results);
         c.gridy = 2;
-        c.ipadx = 650;
-        c.ipady = 250;
-        gl.setConstraints(tfResults,c);
-        resultscreen.add(tfResults);
+        c.ipadx = 600;
+        c.ipady = 350;
+        gl.setConstraints(scroll,c);
+        resultscreen.add(scroll);
         c.gridwidth = 2;
         c.gridy = 3;
         c.gridx = 1;
@@ -198,7 +210,14 @@ public class SuluSearch extends Panel implements ActionListener
         c.gridx = 2;
         gl.setConstraints(trueHits,c);
         resultscreen.add(trueHits);
+        c.gridwidth = 1;
+        c.gridx = 1;
         c.gridy = 5;
+        c.anchor = GridBagConstraints.CENTER;
+        gl.setConstraints(currPage,c);
+        resultscreen.add(currPage);
+        c.gridwidth = 2;
+        c.gridy = 6;
         c.gridx = 1;
         c.anchor = GridBagConstraints.LINE_START;
         gl.setConstraints(arrow2,c);
@@ -207,7 +226,7 @@ public class SuluSearch extends Panel implements ActionListener
         c.anchor = GridBagConstraints.LINE_END;
         gl.setConstraints(arrow1,c);
         resultscreen.add(arrow1);
-        c.gridy = 6;
+        c.gridy = 7;
         c.gridx = 1;
         c.anchor = GridBagConstraints.LINE_START;
         gl.setConstraints(back,c);
@@ -225,20 +244,24 @@ public class SuluSearch extends Panel implements ActionListener
     public void actionPerformed(ActionEvent e)
     {    
         if (e.getSource() == searchButton){    
-        	if (tfSearchTerm.getText() != "" && tfFile.getText()!= "") {
+        	searchTerm = tfSearchTerm.getText();
+        	if (searchTerm.length() != 0 && tfFile.getText().length()!= 0) {
         		if (tfFile.getText().contains(".txt")) 
-        			this.search(new File(tfFile.getText()),new Suchwort(tfSearchTerm.getText()));
-        		//couldnt find file
-        		//else
-        			//this.search(new Path(tfFile.getText()),tfSearchTerm.getText());
-        		//couldnt find directory
+        			this.search(new Artikel(new File(tfFile.getText()),tfFile.getText()),new Suchwort(searchTerm));
+        		else if (new File (tfFile.getText()).isDirectory()) {
+        			arch = new Archiv(new File(tfFile.getText()),tfFile.getText());
+        			y = arch.getAnz();
+        			currPage.setText(x + "/" + y);
+        			if((art = arch.getArtikel()) != null) 
+        				this.search(art ,new Suchwort(searchTerm));
+        			else 
+        				myError(unvalidDir);
+        		}
+        		else 
+        			myError(wrongFile);        	
         	}
         	else
-        		JOptionPane.showMessageDialog(null, 
-                        error1, 
-                        error2, 
-                        JOptionPane.WARNING_MESSAGE);
-        	
+        		myError(error1);        	
         }
         	
         else if (e.getSource() == closeButton || e.getSource() == closeButton2){  
@@ -247,6 +270,7 @@ public class SuluSearch extends Panel implements ActionListener
         
         else if (e.getSource() == back ){  
         	hitcount = 0;
+        	linecount = 0;
         	cl.first(this);
         }
         
@@ -258,14 +282,23 @@ public class SuluSearch extends Panel implements ActionListener
         	this.changeLanguage();
         }
         
-        else if (e.getSource() == arrow1 &&  furtherData){  
-        	//Daten umschreiben
+        else if (e.getSource() == arrow1){  
+        	if ((art = arch.nextArtikel()) != null) {
+        		if(x < y) 
+        			currPage.setText(++x + "/" + y);
+        		hitcount = 0;
+        		this.search(art, new Suchwort(searchTerm));
+        	}
         }
         
-        else if (e.getSource() == arrow2 &&  previousData){  
-        	//Daten umschreiben
+        else if (e.getSource() == arrow2){ 
+        	if ((art = arch.previousArtikel()) != null) {
+        		if(x > 0) 
+        			currPage.setText(--x + "/" + y);
+        		hitcount = 0;
+        		this.search(art, new Suchwort(searchTerm));
+        	}
         }
-        
     }
    
 
@@ -276,52 +309,50 @@ public class SuluSearch extends Panel implements ActionListener
 
     /**
      */
-    public int search(File f, Suchwort sw)
+    public int search(Artikel f, Suchwort sw)
     {
-    	int hits = 0;
-    	Vector<String> findings = new Vector<String>();
+    	
+    	  StringBuilder sb = new StringBuilder();
     	  try
     	  {
-    	    BufferedReader reader = new BufferedReader(new FileReader(f));
+    	    BufferedReader reader = new BufferedReader(new FileReader(f.getPfad()));
     	    String line;
+    	    String toAdd;
     	    Scanner sc;
     	    while ((line = reader.readLine()) != null)
     	    {
-    	    if (line.contains(sw.getText()))
-    	    	findings.add(line);
-    	    	sc = new Scanner(line);
-    	    	while(sc.hasNext()) {
-    	    		if(sc.next() == sw.getText())
-    	    			hitcount ++;
+    	    linecount ++;
+    	    if (line.contains(sw.getText())) {
+    	    		toAdd = lLine + linecount + "	"  + line + "\n";
+	    	    	sb.append(toAdd);
+	    	    	sc = new Scanner(line);
+	    	    	while(sc.hasNext()) {	    	    		
+	    	    		if(sc.next().contains(sw.getText()))
+	    	    			hitcount ++;
+	    	    	}
+	    	    	sc.close();
     	    	}
-    	    	
     	    }
-    	    tfResults.setText(findings.toString());
+    	    if(hitcount > 0)
+    	    	tfResults.setText(sb.toString());
+    	    else
+    	    	myError(noResults);
+    	    trueHits.setText(Integer.toString(hitcount));
+    	    trueOrigin.setText(f.getName());
     	    reader.close();
     	    cl.last(this);
     	    
     	  }
     	  catch (Exception e)
     	  {
-    		JOptionPane.showMessageDialog(null, 
-                      error3 + f.getName(), 
-                      error2, 
-                      JOptionPane.WARNING_MESSAGE);
+    		myError(error3 + f.getName());
     	    e.printStackTrace();
     	    return -1;
     	  }
         
     	
-    	return hits;
-    }
-    
-    public int search(Path p, Suchwort searchTerm)
-    {
-    	int hits = 0;
-        
-    	cl.last(this);
-    	return hits;
-    }
+    	return hitcount;
+    } //./bible/bible_part1.txt
 
     /**
      */
@@ -330,13 +361,18 @@ public class SuluSearch extends Panel implements ActionListener
         System.exit(0);
     }
     
+    public void myError(String err) {
+    	tfResults.setText(err);
+		cl.last(this);
+    }
+    
     public void changeLanguage()
     {
         if (ger) {
         	
         	
-        	lFile.setText("Please enter the the path of the directory or file that you want to search!");
-        	lSearchTerm.setText("Please enter the word that you want to search for!");
+        	lFile.setText("Please enter a path name that you want to search!");
+        	lSearchTerm.setText("Please enter a search-term!");
         	results.setText("Results: ");
         	origin.setText("Origin: ");
         	hits.setText("Number of hits: ");        	
@@ -347,8 +383,11 @@ public class SuluSearch extends Panel implements ActionListener
         	back.setLabel("Back");
         	ger = false;
         	error1 = "You need to fill in values for searchword and path!";
-        	error1 = "Error!";
         	error3 = "Exception occurred trying to read: ";
+        	lLine = "Line: ";
+        	noResults = "There were no words matching your searchterm!";
+        	wrongFile = "Unfortunately not a valid file!";
+        	unvalidDir = "Invalid or empty direcory!";
         }
         else {
         	lFile.setText("Bitte einen Datei- oder Verzeichnisnamen eingeben!");
@@ -363,8 +402,11 @@ public class SuluSearch extends Panel implements ActionListener
         	back.setLabel("Zurück");
         	ger = true;
         	error1 = "Sie müssen einen Wert für Suchwort und Datei festlegen!";
-        	error1 = "Fehler!";
         	error3 = "Ein Fehler ist beim Lesen folgender Datei aufgetreten: ";
+        	lLine = "Linie: ";
+        	noResults = "Es wurden in der Datei keine Ergebnisse zu diesem Suchwort gefunden!";
+        	wrongFile = "Leider handelt es sich hierbei nicht um eine gültige Datei!";
+        	unvalidDir = "Ungültiges oder leeres Verzeichnis!";
         }
     }
     

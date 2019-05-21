@@ -10,7 +10,7 @@
 package Klassendiagramm;
 
 //Start of user code for imports
-
+import java.io.*;
 //End of user code for imports
 
 /**
@@ -21,8 +21,8 @@ package Klassendiagramm;
 public class Artikel 
 {
     // Owned attributes
-    public String Pfad;
-    public String Text;
+    public File pfad;
+    public String name;
 
 
     // Start of user code for extra fields
@@ -31,13 +31,14 @@ public class Artikel
     /**
      * Default constructor
      */
-    public Artikel ()
+    public Artikel (File f, String s)
     {
         // Start of user code for the default constructor
-        super();
+   
         // Attributes TODO
         ;
-        this.Text = null;
+        this.name = s;
+        this.pfad = f;
         // End of user code for the default constructor
     }
 
@@ -49,10 +50,10 @@ public class Artikel
      * Return Pfad
      * @return String
      */
-    public String getPfad()
+    public File getPfad()
     {
         // Start of user code for Artikel.getPfad():String
-        return Pfad;
+        return pfad;
         // End of user code
     }
 
@@ -60,10 +61,10 @@ public class Artikel
      * Set the value of Pfad
      * @param Pfad
      */
-    public void setPfad(String Pfad)
+    public void setPfad(File Pfad)
     {
         // Start of user code for Artikel.setPfad(String)
-        this.Pfad = Pfad;
+        this.pfad = Pfad;
         // End of user code
     }
 
@@ -71,10 +72,10 @@ public class Artikel
      * Return Text
      * @return String
      */
-    public String getText()
+    public String getName()
     {
         // Start of user code for Artikel.getText():String
-        return Text;
+        return name;
         // End of user code
     }
 
@@ -82,10 +83,10 @@ public class Artikel
      * Set the value of Text
      * @param Text
      */
-    public void setText(String Text)
+    public void setName(String Text)
     {
         // Start of user code for Artikel.setText(String)
-        this.Text = Text;
+        this.name = Text;
         // End of user code
     }
 

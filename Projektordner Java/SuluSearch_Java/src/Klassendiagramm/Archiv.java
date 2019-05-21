@@ -10,7 +10,8 @@
 package Klassendiagramm;
 
 //Start of user code for imports
-
+import java.io.*;
+import java.util.*;
 //End of user code for imports
 
 /**
@@ -18,26 +19,32 @@ package Klassendiagramm;
  * 
  * @author Team7
  */
-public class Archiv 
+public class Archiv extends Artikel
 {
     // Owned attributes
-    public String Pfad;
+  
     public Artikel artikel[];
 
 
     // Start of user code for extra fields
+    private int i;
+    private int j;
     // End of user code for extra fields
 
     /**
      * Default constructor
      */
-    public Archiv ()
+    public Archiv (File f, String s)
     {
         // Start of user code for the default constructor
-        super();
+        super(f,s);
+        i = 0;
+        j = 0;
+        artikel = new Artikel [30];
+        this.fillArray(f);
         // Attributes TODO
-        ;
-        ;
+    
+        	
         // End of user code for the default constructor
     }
 
@@ -45,25 +52,57 @@ public class Archiv
     // End of user code for parameterized constructors
 
     // Accessors
+   public void fillArray(File f) {
+	   File list[] = f.listFiles();
+       if(list!=null) {
+	        for (File fil : list)
+	        {       
+	        	if (i < 30) {
+		             if (fil.getName().contains(".txt"))
+		            {
+		                artikel[i] = new Artikel(fil, fil.getName());
+		                i++;
+		            }
+		             if (fil.isDirectory())
+		            {
+		                fillArray(fil);
+		            }
+	        	}
+	        }	        
+       }
+       /*else 
+       		s.myError();
+		*/	   
+   }
    
-    public String getPfad()
-    {
-        // Start of user code for Archiv.getPfad():String
-        return Pfad;
-        // End of user code
-    }
-
- 
-    public void setPfad(String Pfad)
-    {
-        // Start of user code for Archiv.setPfad(String)
-        this.Pfad = Pfad;
-        // End of user code
-    }
-
- 
-
-
+   public Artikel getArtikel() {
+	   if (artikel[j] != null)
+		   return artikel[j];
+	   else 
+		   return null;
+   }
+   
+   public Artikel nextArtikel() {
+	   if (j < i - 1) {
+	   j++;
+	   return artikel[j];
+	   }
+	   else
+		   return null;
+   }
+   
+   public Artikel previousArtikel() {
+	   if(j>0) {
+	   j--;
+	   return artikel[j];
+	   }
+	   else
+		   return null;
+   }
+   
+   public Byte getAnz() {
+	   return (byte) i;
+   }
     // Start of user code for extra methods
     // End of user code for extra methods
 

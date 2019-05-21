@@ -2,6 +2,8 @@
  * 
  */
 package Klassendiagramm;
+import static org.junit.Assert.assertTrue;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.nio.file.*;
@@ -12,29 +14,32 @@ import org.junit.Test;
  *
  */
 public class suluTests {
-	File text1;
-	File text2;
-	Path dir;
+	File text1 = new File("./bible/bible_part1.txt");
+	File text2 = new File("./bible/bible_part2.txt");
+	Suchwort sw = new Suchwort("cinnamon");
+	Path dir; //= new Path("./bible");
 	SuluSearch s;
+	int hits = 0;
+	
 	@Test
 	public void verifyLanguageTest() {		
 		s = new SuluSearch();
 		s.changeLanguage();
-		//assertTrue(Closebutton.getLabel() == "close" && SearchButton.getLabel() == "search");
+		assertTrue(s.closeButton.getLabel().equals("close") && s.searchButton.getLabel().equals("Search"));
 	}
 	
 	@Test
 	public void searchFileTest() {		
 		s = new SuluSearch();
-		int hits = s.search(text1, "cinnamon");
-		//assertTrue(hits == 2);
+		int hits = s.search(text1, sw);
+		assertTrue(hits == 2);
 	}
 	
 	@Test
 	public void searchArchiveTest() {		
 		s = new SuluSearch();
 		dir = Paths.get("./Bible");
-		int hits = s.search(dir, "cinnamon");
+		int hits = s.search(dir, sw);
 		//assertTrue(hits == 4);
 	}
 	
