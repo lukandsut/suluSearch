@@ -7,8 +7,6 @@ package Klassendiagramm;
 import static org.junit.Assert.assertTrue;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.nio.file.*;
 import org.junit.Test;
 
 /**

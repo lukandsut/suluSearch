@@ -1,15 +1,5 @@
-/*******************************************************************************
- * Copyright (c) 2007 TOPCASED. All rights reserved. This program
- * and the accompanying materials are made available under the terms of the
- * Eclipse Public License v1.0 which accompanies this distribution, and is
- * available at http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors: Topcased contributors and others - initial API and implementation
-*******************************************************************************/
-
 package Klassendiagramm;
 
-//Start of user code for imports
 
 import java.io.*;
 import java.util.Scanner;
@@ -99,7 +89,7 @@ public class SuluSearch extends Panel implements ActionListener {
 		results = new Label("Suchergebnisse: ");
 		origin = new Label("Gefunden in der Datei: ");
 		trueOrigin = new Label("");
-		hits = new Label("Häufigkeit: ");
+		hits = new Label("Haufigkeit: ");
 		trueHits = new Label("");
 		tfSearchTerm = new TextField();
 		tfFile = new TextField();
@@ -110,28 +100,28 @@ public class SuluSearch extends Panel implements ActionListener {
 		painter = new DefaultHighlighter.DefaultHighlightPainter(Color.RED);
 		searchButton = new Button("Suchen");
 		searchButton.addActionListener(this);
-		closeButton = new Button("Schließen");
+		closeButton = new Button("Schliessen");
 		closeButton.addActionListener(this);
-		closeButton2 = new Button("Schließen");
+		closeButton2 = new Button("Schliessen");
 		closeButton2.addActionListener(this);
 		german = new Button("Deu");
 		german.addActionListener(this);
 		english = new Button("Eng");
 		english.addActionListener(this);
-		back = new Button("Zurück");
+		back = new Button("Zurueck");
 		back.addActionListener(this);
 		arrow1 = new Button("-->");
 		arrow1.addActionListener(this);
 		arrow2 = new Button("<--");
 		arrow2.addActionListener(this);
-		error1 = "Sie müssen einen Wert für Suchwort und Datei festlegen!";
+		error1 = "Sie muessen einen Wert fuer Suchwort und Datei festlegen!";
 		error3 = "Ein Fehler ist beim Lesen folgender Datei aufgetreten: ";
 		hitcount = 0;
 		linecount = 0;
 		lLine = "Linie: ";
 		noResults = "Es wurden in der Datei keine Ergebnisse zu diesem Suchwort gefunden!";
-		wrongFile = "Leider handelt es sich hierbei nicht um eine gültige Datei!";
-		unvalidDir = "Ungültiges oder leeres Verzeichnis!";
+		wrongFile = "Leider handelt es sich hierbei nicht um eine gueltige Datei!";
+		unvalidDir = "Ungueltiges oder leeres Verzeichnis!";
 		x = y = 1;
 		currPage = new Label(x + "/" + y);
 
@@ -396,19 +386,19 @@ public class SuluSearch extends Panel implements ActionListener {
 			lSearchTerm.setText("Bitte einen Suchbegriff eingeben");
 			results.setText("Suchergebnisse: ");
 			origin.setText("Gefunden in der Datei: ");
-			hits.setText("Häufigkeit: ");
+			hits.setText("Haufigkeit: ");
 			searchButton.setLabel("Suchen");
-			closeButton.setLabel("Schleißen");
-			closeButton2.setLabel("Schleißen");
+			closeButton.setLabel("Schleissen");
+			closeButton2.setLabel("Schleissen");
 			german.setLabel("Deu");
-			back.setLabel("Zurück");
+			back.setLabel("Zurueck");
 			ger = true;
-			error1 = "Sie müssen einen Wert für Suchwort und Datei festlegen!";
+			error1 = "Sie muessen einen Wert fuer Suchwort und Datei festlegen!";
 			error3 = "Ein Fehler ist beim Lesen folgender Datei aufgetreten: ";
 			lLine = "Linie: ";
 			noResults = "Es wurden in der Datei keine Ergebnisse zu diesem Suchwort gefunden!";
-			wrongFile = "Leider handelt es sich hierbei nicht um eine gültige Datei!";
-			unvalidDir = "Ungültiges oder leeres Verzeichnis!";
+			wrongFile = "Leider handelt es sich hierbei nicht um eine gueltige Datei!";
+			unvalidDir = "Ungueltiges oder leeres Verzeichnis!";
 		}
 	}
 
@@ -440,3 +430,6 @@ public class SuluSearch extends Panel implements ActionListener {
 	// End of user code
 
 }
+
+
+	
