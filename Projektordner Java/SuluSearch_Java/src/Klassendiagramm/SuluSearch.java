@@ -14,9 +14,15 @@ package Klassendiagramm;
 
 import java.io.*;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.DefaultHighlighter;
+import javax.swing.text.Highlighter;
+import javax.swing.text.Highlighter.HighlightPainter;
 
 //End of user code for imports
 
@@ -32,6 +38,8 @@ public class SuluSearch extends Panel implements ActionListener
 	TextField tfFile;
 	JScrollPane scroll;
 	JTextArea tfResults;
+	Highlighter highlighter;
+	HighlightPainter painter;
 	Label lSulu;
 	Label lSulu2;
 	Label lFile;
@@ -68,6 +76,8 @@ public class SuluSearch extends Panel implements ActionListener
 	String searchTerm;
 	String unvalidDir;
 	byte x, y, i;
+	Matcher matcher;
+	Pattern pattern;
 	
  
     public SuluSearch ()
@@ -102,6 +112,8 @@ public class SuluSearch extends Panel implements ActionListener
 		tfResults = new JTextArea("", 1,1);
 		tfResults.setFont(new Font("myFont", Font.ITALIC, 20));
 		scroll = new JScrollPane(tfResults);
+		highlighter = tfResults.getHighlighter();
+	    painter = new DefaultHighlighter.DefaultHighlightPainter(Color.RED);
 		searchButton = new Button("Suchen");
 		searchButton.addActionListener(this);
 		closeButton = new Button("Schließen");
@@ -128,6 +140,7 @@ public class SuluSearch extends Panel implements ActionListener
 		unvalidDir = "Ungültiges oder leeres Verzeichnis!";
 		x = y = 1;
 		currPage = new Label(x + "/" + y);
+		
 		
 		//Design
 		//Mainscreen
@@ -326,17 +339,35 @@ public class SuluSearch extends Panel implements ActionListener
     	    		toAdd = lLine + linecount + "	"  + line + "\n";
 	    	    	sb.append(toAdd);
 	    	    	sc = new Scanner(line);
-	    	    	while(sc.hasNext()) {	    	    		
-	    	    		if(sc.next().contains(sw.getText()))
+	    	    	String word;
+	    	    	while(sc.hasNext()) {	
+	    	    		word = sc.next();
+	    	    		if(word.contains(sw.getText()))
 	    	    			hitcount ++;
 	    	    	}
 	    	    	sc.close();
     	    	}
     	    }
-    	    if(hitcount > 0)
+    	    if(hitcount > 0) {
     	    	tfResults.setText(sb.toString());
+    	    	pattern = Pattern.compile(sw.getText());
+    			matcher = pattern.matcher(tfResults.getText());
+    			while( matcher.find() )
+                {
+                   int start = matcher.start();
+                   int end = matcher.end();
+                   try {
+                       highlighter.addHighlight(start, end, painter);
+                   }               
+                       catch (BadLocationException e1) {                       
+                          e1.printStackTrace();
+                       }
+                }
+    	    	
+    	    }
     	    else
     	    	myError(noResults);
+    	    
     	    trueHits.setText(Integer.toString(hitcount));
     	    trueOrigin.setText(f.getName());
     	    reader.close();
