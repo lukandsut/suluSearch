@@ -10,7 +10,8 @@
 package Klassendiagramm;
 
 //Start of user code for imports
-
+import java.io.*;
+import java.util.*;
 //End of user code for imports
 
 /**
@@ -18,85 +19,88 @@ package Klassendiagramm;
  * 
  * @author Team7
  */
-public class Archiv 
-{
-    // Owned attributes
-    public String Pfad;
-    public String Artikel[];
+public class Archiv extends Artikel {
+	// Owned attributes
 
+	public Artikel artikel[];
 
-    // Start of user code for extra fields
-    // End of user code for extra fields
+	// Start of user code for extra fields
+	private int i;
+	private int j;
+	// End of user code for extra fields
 
-    /**
-     * Default constructor
-     */
-    public Archiv ()
-    {
-        // Start of user code for the default constructor
-        super();
-        // Attributes TODO
-        ;
-        ;
-        // End of user code for the default constructor
-    }
+	/**
+	 * Default constructor
+	 */
+	public Archiv(File f, String s) {
+		// Start of user code for the default constructor
+		super(f, s);
+		i = 0;
+		j = 0;
+		artikel = new Artikel[30];
+		this.fillArray(f);
+		// Attributes TODO
 
-    // Start of user code for parameterized constructors
-    // End of user code for parameterized constructors
+		// End of user code for the default constructor
+	}
 
-    // Accessors
-    /**
-     * Return Pfad
-     * @return String
-     */
-    public String getPfad()
-    {
-        // Start of user code for Archiv.getPfad():String
-        return Pfad;
-        // End of user code
-    }
+	// Start of user code for parameterized constructors
+	// End of user code for parameterized constructors
 
-    /**
-     * Set the value of Pfad
-     * @param Pfad
-     */
-    public void setPfad(String Pfad)
-    {
-        // Start of user code for Archiv.setPfad(String)
-        this.Pfad = Pfad;
-        // End of user code
-    }
+	// Accessors
+	public void fillArray(File f) {
+		File list[] = f.listFiles();
+		if (list != null) {
+			for (File fil : list) {
+				if (i < 30) {
+					if (fil.getName().contains(".txt")) {
+						artikel[i] = new Artikel(fil, fil.getName());
+						i++;
+					}
+					if (fil.isDirectory()) {
+						fillArray(fil);
+					}
+				}
+			}
+		}
+		/*
+		 * else s.myError();
+		 */
+	}
 
-    /**
-     * Return Artikel[]
-     * @return String
-     */
-    public String getArtikel[]()
-    {
-        // Start of user code for Archiv.getArtikel[]():String
-        return Artikel[];
-        // End of user code
-    }
+	public Artikel getArtikel() {
+		if (artikel[j] != null)
+			return artikel[j];
+		else
+			return null;
+	}
 
-    /**
-     * Set the value of Artikel[]
-     * @param Artikel[]
-     */
-    public void setArtikel[](String Artikel[])
-    {
-        // Start of user code for Archiv.setArtikel[](String)
-        this.Artikel[] = Artikel[];
-        // End of user code
-    }
+	public Artikel nextArtikel() {
+		if (j < i - 1) {
+			j++;
+			return artikel[j];
+		} else
+			return null;
+	}
 
+	public Artikel previousArtikel() {
+		if (j > 0) {
+			j--;
+			return artikel[j];
+		} else
+			return null;
+	}
 
-    // Start of user code for extra methods
-    // End of user code for extra methods
+	public Byte getAnz() {
+		return (byte) i;
+	}
+	// Start of user code for extra methods
+	// End of user code for extra methods
 
-    // Start of user code for Archiv.main	
-    /*public static void main (String[] args) {	
-    }
-    */
-    // End of user code
-	
+	// Start of user code for Archiv.main
+	/*
+	 * public static void main (String[] args) { }
+	 */
+	// End of user code
+
 }

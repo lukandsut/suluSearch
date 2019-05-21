@@ -18,75 +18,58 @@ package Klassendiagramm;
  * 
  * @author Team7
  */
-public class Suchwort 
-{
-    // Owned attributes
-    public String Text;
+public class Suchwort {
+	// Owned attributes
+	private String text;
 
+	// Start of user code for extra fields
+	// End of user code for extra fields
 
-    // Start of user code for extra fields
-    // End of user code for extra fields
+	public Suchwort(String content) {
 
-    /**
-     * Default constructor
-     */
-    public Suchwort ()
-    {
-        // Start of user code for the default constructor
-        super();
-        // Attributes TODO
-        this.Text = null;
-        // End of user code for the default constructor
-    }
+		// Attributes TODO
+		this.text = content;
+		// End of user code for the default constructor
+	}
 
-    // Start of user code for parameterized constructors
-    // End of user code for parameterized constructors
+	// Start of user code for parameterized constructors
+	// End of user code for parameterized constructors
 
-    // Accessors
-    /**
-     * Return Text
-     * @return String
-     */
-    public String getText()
-    {
-        // Start of user code for Suchwort.getText():String
-        return Text;
-        // End of user code
-    }
+	// Accessors
+	/**
+	 * Return Text
+	 * 
+	 * @return String
+	 */
+	public String getText() {
+		// Start of user code for Suchwort.getText():String
+		return text;
+		// End of user code
+	}
 
-    /**
-     * Set the value of Text
-     * @param Text
-     */
-    public void setText(String Text)
-    {
-        // Start of user code for Suchwort.setText(String)
-        this.Text = Text;
-        // End of user code
-    }
+	/**
+	 * Set the value of Text
+	 * 
+	 * @param Text
+	 */
+	public void setText(String Text) {
+		// Start of user code for Suchwort.setText(String)
+		this.text = Text;
+		// End of user code
+	}
 
+	// Methods
 
-    // Methods 
+	/**
+	 */
 
-    /**
-     */
-    public void setText()
-    {
-        // Start of user code for Suchwort.setText()
-        // TODO
-        // End of user code
-    }
+	// Start of user code for extra methods
+	// End of user code for extra methods
 
-   
+	// Start of user code for Suchwort.main
+	/*
+	 * public static void main (String[] args) { }
+	 */
+	// End of user code
 
-
-    // Start of user code for extra methods
-    // End of user code for extra methods
-
-    // Start of user code for Suchwort.main	
-    /*public static void main (String[] args) {	
-    }
-    */
-    // End of user code
-	
 }
