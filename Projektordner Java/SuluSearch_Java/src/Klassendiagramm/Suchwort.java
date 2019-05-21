@@ -18,65 +18,58 @@ package Klassendiagramm;
  * 
  * @author Team7
  */
-public class Suchwort 
-{
-    // Owned attributes
-    private String text;
+public class Suchwort {
+	// Owned attributes
+	private String text;
 
+	// Start of user code for extra fields
+	// End of user code for extra fields
 
-    // Start of user code for extra fields
-    // End of user code for extra fields
+	public Suchwort(String content) {
 
- 
-    public Suchwort (String content)
-    {
-        
-        // Attributes TODO
-        this.text = content;
-        // End of user code for the default constructor
-    }
+		// Attributes TODO
+		this.text = content;
+		// End of user code for the default constructor
+	}
 
-    // Start of user code for parameterized constructors
-    // End of user code for parameterized constructors
+	// Start of user code for parameterized constructors
+	// End of user code for parameterized constructors
 
-    // Accessors
-    /**
-     * Return Text
-     * @return String
-     */
-    public String getText()
-    {
-        // Start of user code for Suchwort.getText():String
-        return text;
-        // End of user code
-    }
+	// Accessors
+	/**
+	 * Return Text
+	 * 
+	 * @return String
+	 */
+	public String getText() {
+		// Start of user code for Suchwort.getText():String
+		return text;
+		// End of user code
+	}
 
-    /**
-     * Set the value of Text
-     * @param Text
-     */
-    public void setText(String Text)
-    {
-        // Start of user code for Suchwort.setText(String)
-        this.text = Text;
-        // End of user code
-    }
+	/**
+	 * Set the value of Text
+	 * 
+	 * @param Text
+	 */
+	public void setText(String Text) {
+		// Start of user code for Suchwort.setText(String)
+		this.text = Text;
+		// End of user code
+	}
 
+	// Methods
 
-    // Methods 
+	/**
+	 */
 
-    /**
-     */
-   
+	// Start of user code for extra methods
+	// End of user code for extra methods
 
+	// Start of user code for Suchwort.main
+	/*
+	 * public static void main (String[] args) { }
+	 */
+	// End of user code
 
-    // Start of user code for extra methods
-    // End of user code for extra methods
-
-    // Start of user code for Suchwort.main	
-    /*public static void main (String[] args) {	
-    }
-    */
-    // End of user code
-	
 }

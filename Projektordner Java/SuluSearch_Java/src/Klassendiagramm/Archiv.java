@@ -19,97 +19,88 @@ import java.util.*;
  * 
  * @author Team7
  */
-public class Archiv extends Artikel
-{
-    // Owned attributes
-  
-    public Artikel artikel[];
+public class Archiv extends Artikel {
+	// Owned attributes
 
+	public Artikel artikel[];
 
-    // Start of user code for extra fields
-    private int i;
-    private int j;
-    // End of user code for extra fields
+	// Start of user code for extra fields
+	private int i;
+	private int j;
+	// End of user code for extra fields
 
-    /**
-     * Default constructor
-     */
-    public Archiv (File f, String s)
-    {
-        // Start of user code for the default constructor
-        super(f,s);
-        i = 0;
-        j = 0;
-        artikel = new Artikel [30];
-        this.fillArray(f);
-        // Attributes TODO
-    
-        	
-        // End of user code for the default constructor
-    }
+	/**
+	 * Default constructor
+	 */
+	public Archiv(File f, String s) {
+		// Start of user code for the default constructor
+		super(f, s);
+		i = 0;
+		j = 0;
+		artikel = new Artikel[30];
+		this.fillArray(f);
+		// Attributes TODO
 
-    // Start of user code for parameterized constructors
-    // End of user code for parameterized constructors
+		// End of user code for the default constructor
+	}
 
-    // Accessors
-   public void fillArray(File f) {
-	   File list[] = f.listFiles();
-       if(list!=null) {
-	        for (File fil : list)
-	        {       
-	        	if (i < 30) {
-		             if (fil.getName().contains(".txt"))
-		            {
-		                artikel[i] = new Artikel(fil, fil.getName());
-		                i++;
-		            }
-		             if (fil.isDirectory())
-		            {
-		                fillArray(fil);
-		            }
-	        	}
-	        }	        
-       }
-       /*else 
-       		s.myError();
-		*/	   
-   }
-   
-   public Artikel getArtikel() {
-	   if (artikel[j] != null)
-		   return artikel[j];
-	   else 
-		   return null;
-   }
-   
-   public Artikel nextArtikel() {
-	   if (j < i - 1) {
-	   j++;
-	   return artikel[j];
-	   }
-	   else
-		   return null;
-   }
-   
-   public Artikel previousArtikel() {
-	   if(j>0) {
-	   j--;
-	   return artikel[j];
-	   }
-	   else
-		   return null;
-   }
-   
-   public Byte getAnz() {
-	   return (byte) i;
-   }
-    // Start of user code for extra methods
-    // End of user code for extra methods
+	// Start of user code for parameterized constructors
+	// End of user code for parameterized constructors
 
-    // Start of user code for Archiv.main	
-    /*public static void main (String[] args) {	
-    }
-    */
-    // End of user code
-	
+	// Accessors
+	public void fillArray(File f) {
+		File list[] = f.listFiles();
+		if (list != null) {
+			for (File fil : list) {
+				if (i < 30) {
+					if (fil.getName().contains(".txt")) {
+						artikel[i] = new Artikel(fil, fil.getName());
+						i++;
+					}
+					if (fil.isDirectory()) {
+						fillArray(fil);
+					}
+				}
+			}
+		}
+		/*
+		 * else s.myError();
+		 */
+	}
+
+	public Artikel getArtikel() {
+		if (artikel[j] != null)
+			return artikel[j];
+		else
+			return null;
+	}
+
+	public Artikel nextArtikel() {
+		if (j < i - 1) {
+			j++;
+			return artikel[j];
+		} else
+			return null;
+	}
+
+	public Artikel previousArtikel() {
+		if (j > 0) {
+			j--;
+			return artikel[j];
+		} else
+			return null;
+	}
+
+	public Byte getAnz() {
+		return (byte) i;
+	}
+	// Start of user code for extra methods
+	// End of user code for extra methods
+
+	// Start of user code for Archiv.main
+	/*
+	 * public static void main (String[] args) { }
+	 */
+	// End of user code
+
 }

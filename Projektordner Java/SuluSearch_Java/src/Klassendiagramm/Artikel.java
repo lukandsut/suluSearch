@@ -18,88 +18,82 @@ import java.io.*;
  * 
  * @author Team7
  */
-public class Artikel 
-{
-    // Owned attributes
-    public File pfad;
-    public String name;
+public class Artikel {
+	// Owned attributes
+	public File pfad;
+	public String name;
 
+	// Start of user code for extra fields
+	// End of user code for extra fields
 
-    // Start of user code for extra fields
-    // End of user code for extra fields
+	/**
+	 * Default constructor
+	 */
+	public Artikel(File f, String s) {
+		// Start of user code for the default constructor
 
-    /**
-     * Default constructor
-     */
-    public Artikel (File f, String s)
-    {
-        // Start of user code for the default constructor
-   
-        // Attributes TODO
-        ;
-        this.name = s;
-        this.pfad = f;
-        // End of user code for the default constructor
-    }
+		// Attributes TODO
+		;
+		this.name = s;
+		this.pfad = f;
+		// End of user code for the default constructor
+	}
 
-    // Start of user code for parameterized constructors
-    // End of user code for parameterized constructors
+	// Start of user code for parameterized constructors
+	// End of user code for parameterized constructors
 
-    // Accessors
-    /**
-     * Return Pfad
-     * @return String
-     */
-    public File getPfad()
-    {
-        // Start of user code for Artikel.getPfad():String
-        return pfad;
-        // End of user code
-    }
+	// Accessors
+	/**
+	 * Return Pfad
+	 * 
+	 * @return String
+	 */
+	public File getPfad() {
+		// Start of user code for Artikel.getPfad():String
+		return pfad;
+		// End of user code
+	}
 
-    /**
-     * Set the value of Pfad
-     * @param Pfad
-     */
-    public void setPfad(File Pfad)
-    {
-        // Start of user code for Artikel.setPfad(String)
-        this.pfad = Pfad;
-        // End of user code
-    }
+	/**
+	 * Set the value of Pfad
+	 * 
+	 * @param Pfad
+	 */
+	public void setPfad(File Pfad) {
+		// Start of user code for Artikel.setPfad(String)
+		this.pfad = Pfad;
+		// End of user code
+	}
 
-    /**
-     * Return Text
-     * @return String
-     */
-    public String getName()
-    {
-        // Start of user code for Artikel.getText():String
-        return name;
-        // End of user code
-    }
+	/**
+	 * Return Text
+	 * 
+	 * @return String
+	 */
+	public String getName() {
+		// Start of user code for Artikel.getText():String
+		return name;
+		// End of user code
+	}
 
-    /**
-     * Set the value of Text
-     * @param Text
-     */
-    public void setName(String Text)
-    {
-        // Start of user code for Artikel.setText(String)
-        this.name = Text;
-        // End of user code
-    }
+	/**
+	 * Set the value of Text
+	 * 
+	 * @param Text
+	 */
+	public void setName(String Text) {
+		// Start of user code for Artikel.setText(String)
+		this.name = Text;
+		// End of user code
+	}
 
+	// Start of user code for extra methods
+	// End of user code for extra methods
 
-    
+	// Start of user code for Artikel.main
+	/*
+	 * public static void main (String[] args) { }
+	 */
+	// End of user code
 
-    // Start of user code for extra methods
-    // End of user code for extra methods
-
-    // Start of user code for Artikel.main	
-    /*public static void main (String[] args) {	
-    }
-    */
-    // End of user code
-	
 }
