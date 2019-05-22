@@ -19,9 +19,9 @@ public class Artikel {
 	public File pfad;
 	public String name;
 /**
- * 
- * @param f
- * @param s
+ * Artikeleigenschaften
+ * @param f ist ein Dateipfad des Artikels
+ * @param s ist der Name der Datei
  */
 	public Artikel(File f, String s) {
 		;
@@ -30,7 +30,7 @@ public class Artikel {
 	}
 
 /**
- * this returns the Pfad
+ * returns the value of the path
  * @return Pfad 
  */
 	public File getPfad() {
@@ -38,7 +38,7 @@ public class Artikel {
 	}
 
 	/**
-	 * Set the value of Pfad
+	 * Set the value of the path
 	 * 
 	 * @param Pfad
 	 */
@@ -47,15 +47,15 @@ public class Artikel {
 	}
 
 /**
- * 
- * @return the name of the pfad
+ * returns the name of the path
+ * @return name
  */
 	public String getName() {
 		return name;
 	}
 
 	/**
-	 * Set the value of Text
+	 * Sets the value of Text
 	 * 
 	 * @param Text
 	 */

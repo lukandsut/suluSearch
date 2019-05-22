@@ -90,7 +90,7 @@ public class SuluSearch extends Panel implements ActionListener {
 		this.add(resultscreen, "resultscreen");
 
 		// Components
-		lSulu = new Label("SuluSearch");
+		lSulu = new Label("suluSearch");
 		lSulu2 = new Label(lSulu.getText());
 		lFile = new Label("Bitte einen Datei- oder Verzeichnisnamen eingeben!");
 		lSearchTerm = new Label("Bitte einen Suchbegriff eingeben");
@@ -301,10 +301,10 @@ public class SuluSearch extends Panel implements ActionListener {
 
 
 /**
- * 
- * @param f
- * @param sw
- * @return
+ * Suchfunktion
+ * @param f ist ein Dateipfad des Artikels
+ * @param sw ist das Suchwort
+ * @return hitcount Trefferzahl
  */
 	public int search(Artikel f, Suchwort sw) {
 
@@ -367,7 +367,7 @@ public class SuluSearch extends Panel implements ActionListener {
 	
 	/**
 	 * 
-	 * @param err
+	 * @param err fehler ausgabe
 	 */
 
 	public void myError(String err) {
@@ -422,10 +422,7 @@ public class SuluSearch extends Panel implements ActionListener {
 		return d;
 	}
 
-/**
- * 
- * @param args
- */
+
 	public static void main(String[] args) {
 		SuluSearch s = new SuluSearch();
 		Frame f = new Frame("SuluSearch");
