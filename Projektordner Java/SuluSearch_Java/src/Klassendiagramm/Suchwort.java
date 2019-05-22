@@ -21,7 +21,7 @@ public class Suchwort {
 	private String text;
 /**
  * Suchwort
- * @param content Inhalt des Suchwortes
+ * @param content 
  */
 	public Suchwort(String content) {
 		this.text = content;
