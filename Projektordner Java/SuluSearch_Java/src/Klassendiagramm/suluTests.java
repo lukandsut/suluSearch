@@ -19,6 +19,7 @@ public class suluTests {
 	static Suchwort sw = new Suchwort("cinnamon");
 	static SuluSearch s;
 	static int hits = 0;
+	boolean isDisplayed = false;
 
 	//bestanden
 	@Test
@@ -42,5 +43,11 @@ public class suluTests {
 	  //    wiederholte aufrufen der Artikel-Suchfunktion erfolgt, welche bereits er-
 	  //	folgreich getestet wurde.
 	 
+	  @Test
+	  public void aboutButtonTest() {
+		  s = new SuluSearch(); 
+		  isDisplayed = s.displayAboutButton();
+		  assertTrue(isDisplayed); 
+	  }
 
 }
