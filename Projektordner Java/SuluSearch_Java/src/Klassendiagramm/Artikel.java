@@ -9,96 +9,57 @@
 
 package Klassendiagramm;
 
-//Start of user code for imports
-
-//End of user code for imports
-
+import java.io.*;
 /**
- * Class Artikel<br />
+ * Class Artikel
  * 
  * @author Team7
  */
-public class Artikel 
-{
-    // Owned attributes
-    public String Pfad;
-    public String Text;
+public class Artikel {
+	public File pfad;
+	public String name;
+/**
+ * Artikeleigenschaften
+ * @param f ist ein Dateipfad des Artikels
+ * @param s ist der Name der Datei
+ */
+	public Artikel(File f, String s) {
+		;
+		this.name = s;
+		this.pfad = f;
+	}
 
+/**
+ * returns the value of the path
+ * @return Pfad 
+ */
+	public File getPfad() {
+		return pfad;
+	}
 
-    // Start of user code for extra fields
-    // End of user code for extra fields
+	/**
+	 * Set the value of the path
+	 * 
+	 * @param Pfad
+	 */
+	public void setPfad(File Pfad) {
+		this.pfad = Pfad;
+	}
 
-    /**
-     * Default constructor
-     */
-    public Artikel ()
-    {
-        // Start of user code for the default constructor
-        super();
-        // Attributes TODO
-        ;
-        this.Text = null;
-        // End of user code for the default constructor
-    }
+/**
+ * returns the name of the path
+ * @return name
+ */
+	public String getName() {
+		return name;
+	}
 
-    // Start of user code for parameterized constructors
-    // End of user code for parameterized constructors
-
-    // Accessors
-    /**
-     * Return Pfad
-     * @return String
-     */
-    public String getPfad()
-    {
-        // Start of user code for Artikel.getPfad():String
-        return Pfad;
-        // End of user code
-    }
-
-    /**
-     * Set the value of Pfad
-     * @param Pfad
-     */
-    public void setPfad(String Pfad)
-    {
-        // Start of user code for Artikel.setPfad(String)
-        this.Pfad = Pfad;
-        // End of user code
-    }
-
-    /**
-     * Return Text
-     * @return String
-     */
-    public String getText()
-    {
-        // Start of user code for Artikel.getText():String
-        return Text;
-        // End of user code
-    }
-
-    /**
-     * Set the value of Text
-     * @param Text
-     */
-    public void setText(String Text)
-    {
-        // Start of user code for Artikel.setText(String)
-        this.Text = Text;
-        // End of user code
-    }
-
-
-    
-
-    // Start of user code for extra methods
-    // End of user code for extra methods
-
-    // Start of user code for Artikel.main	
-    /*public static void main (String[] args) {	
-    }
-    */
-    // End of user code
-	
+	/**
+	 * Sets the value of Text
+	 * 
+	 * @param Text
+	 */
+	public void setName(String Text) {
+		this.name = Text;
+	}
 }

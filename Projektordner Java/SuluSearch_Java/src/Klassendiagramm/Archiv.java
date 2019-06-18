@@ -9,94 +9,94 @@
 
 package Klassendiagramm;
 
-//Start of user code for imports
-
-//End of user code for imports
+import java.io.*;
+import java.util.*;
 
 /**
- * Class Archiv<br />
+ * Class Archiv
  * 
  * @author Team7
  */
-public class Archiv 
-{
-    // Owned attributes
-    public String Pfad;
-    public String Artikel[];
+public class Archiv extends Artikel {
 
+	public Artikel artikel[];
 
-    // Start of user code for extra fields
-    // End of user code for extra fields
+	private int i;
+	private int j;
+	/**
+	 * Archiv erbt von Artikel
+	 * @param f ist der Pfad
+	 * @param s ist der Name
+	 */
+	public Archiv(File f, String s) {
+		super(f, s);
+		i = 0;
+		j = 0;
+		artikel = new Artikel[30];
+		this.fillArray(f);
+}
+/**
+ * schreibt alle Dateipfade, die auf ".txt" enden, aus einem Verzeichnis in eine Liste
+ * @param f ist der Name
+ */
+	public void fillArray(File f) {
+		File list[] = f.listFiles();
+		if (list != null) {
+			for (File fil : list) {
+				if (i < 30) {
+					if (fil.getName().contains(".txt")) {
+						artikel[i] = new Artikel(fil, fil.getName());
+						i++;
+					}
+					if (fil.isDirectory()) {
+						fillArray(fil);
+					}
+				}
+			}
+		}
+		/*
+		 * else s.myError();
+		 */
+	}
 
-    /**
-     * Default constructor
-     */
-    public Archiv ()
-    {
-        // Start of user code for the default constructor
-        super();
-        // Attributes TODO
-        ;
-        ;
-        // End of user code for the default constructor
-    }
+	/**
+	 * returnt einen Artikel aus der Liste
+	 * @return artikel[j]
+	 */
+	public Artikel getArtikel() {
+		if (artikel[j] != null)
+			return artikel[j];
+		else
+			return null;
+	}
 
-    // Start of user code for parameterized constructors
-    // End of user code for parameterized constructors
-
-    // Accessors
-    /**
-     * Return Pfad
-     * @return String
-     */
-    public String getPfad()
-    {
-        // Start of user code for Archiv.getPfad():String
-        return Pfad;
-        // End of user code
-    }
-
-    /**
-     * Set the value of Pfad
-     * @param Pfad
-     */
-    public void setPfad(String Pfad)
-    {
-        // Start of user code for Archiv.setPfad(String)
-        this.Pfad = Pfad;
-        // End of user code
-    }
-
-    /**
-     * Return Artikel[]
-     * @return String
-     */
-    public String getArtikel[]()
-    {
-        // Start of user code for Archiv.getArtikel[]():String
-        return Artikel[];
-        // End of user code
-    }
-
-    /**
-     * Set the value of Artikel[]
-     * @param Artikel[]
-     */
-    public void setArtikel[](String Artikel[])
-    {
-        // Start of user code for Archiv.setArtikel[](String)
-        this.Artikel[] = Artikel[];
-        // End of user code
-    }
-
-
-    // Start of user code for extra methods
-    // End of user code for extra methods
-
-    // Start of user code for Archiv.main	
-    /*public static void main (String[] args) {	
-    }
-    */
-    // End of user code
-	
+	/**
+	 * returnt den nächsten Artikel aus der Liste (Button next/nächster)
+	 * @return artikel[j]
+	 */
+	public Artikel nextArtikel() {
+		if (j < i - 1) {
+			j++;
+			return artikel[j];
+		} else
+			return null;
+	}
+/**
+ * returnt den vorherigen Artikel aus der Liste (Button back/zurück)
+ * @return artikel[j]
+ */
+	public Artikel previousArtikel() {
+		if (j > 0) {
+			j--;
+			return artikel[j];
+		} else
+			return null;
+	}
+/**
+ * Länge des Artikels in byte
+ * @return i
+ */
+	public Byte getAnz() {
+		return (byte) i;
+	}
 }
