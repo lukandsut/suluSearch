@@ -46,6 +46,7 @@ public class SuluSearch extends Panel implements ActionListener {
 	Button back;
 	Button arrow1;
 	Button arrow2;
+	Button aboutButton;
 	Panel mainscreen;
 	Panel resultscreen;
 	GridBagConstraints c;
@@ -80,6 +81,8 @@ public class SuluSearch extends Panel implements ActionListener {
 		resultscreen.setLayout(gl);
 		this.add(mainscreen, "mainscreen");
 		this.add(resultscreen, "resultscreen");
+		
+		 
 
 		// Components
 		lSulu = new Label("SuluSearch");
@@ -114,6 +117,8 @@ public class SuluSearch extends Panel implements ActionListener {
 		arrow1.addActionListener(this);
 		arrow2 = new Button("<--");
 		arrow2.addActionListener(this);
+		aboutButton  = new Button("Info");
+		aboutButton.addActionListener(this);
 		error1 = "Sie muessen einen Wert fuer Suchwort und Datei festlegen!";
 		error3 = "Ein Fehler ist beim Lesen folgender Datei aufgetreten: ";
 		hitcount = 0;
@@ -157,15 +162,18 @@ public class SuluSearch extends Panel implements ActionListener {
 		gl.setConstraints(tfSearchTerm, c);
 		mainscreen.add(tfSearchTerm);
 		c.gridy = 6;
-		c.gridwidth = 2;
-		c.ipadx = 200;
+		c.gridwidth = 3;
+		c.ipadx = 100;
 		c.insets = new Insets(10, 15, 10, 15);
 		c.anchor = GridBagConstraints.LINE_START;
 		gl.setConstraints(searchButton, c);
 		mainscreen.add(searchButton);
-		c.anchor = GridBagConstraints.LINE_END;
+		c.anchor = GridBagConstraints.CENTER;
 		gl.setConstraints(closeButton, c);
 		mainscreen.add(closeButton);
+		c.anchor = GridBagConstraints.LINE_END;
+		gl.setConstraints(aboutButton, c);
+		mainscreen.add(aboutButton);
 
 		// resultscreen
 		c.anchor = GridBagConstraints.CENTER;
@@ -262,7 +270,7 @@ public class SuluSearch extends Panel implements ActionListener {
 		else if (e.getSource() == back) {
 			hitcount = 0;
 			linecount = 0;
-			cl.first(this);
+			cl.show(this, "mainscreen");
 		}
 
 		else if (e.getSource() == english && ger) {
@@ -289,6 +297,10 @@ public class SuluSearch extends Panel implements ActionListener {
 				hitcount = 0;
 				this.search(art, new Suchwort(searchTerm));
 			}
+		}
+		
+		else if (e.getSource() == aboutButton) {
+			this.displayAboutButton();
 		}
 	}
 
@@ -339,7 +351,8 @@ public class SuluSearch extends Panel implements ActionListener {
 			trueHits.setText(Integer.toString(hitcount));
 			trueOrigin.setText(f.getName());
 			reader.close();
-			cl.last(this);
+			cl.show(this, "resultscreen");
+			
 
 		} catch (Exception e) {
 			myError(error3 + f.getName());
@@ -348,7 +361,7 @@ public class SuluSearch extends Panel implements ActionListener {
 		}
 
 		return hitcount;
-	} // ./bible/bible_part1.txt
+	} 
 
 	/**
 	 */
@@ -358,7 +371,7 @@ public class SuluSearch extends Panel implements ActionListener {
 
 	public void myError(String err) {
 		tfResults.setText(err);
-		cl.last(this);
+		cl.show(this, "resultscreen");
 	}
 
 	public void changeLanguage() {
@@ -372,6 +385,7 @@ public class SuluSearch extends Panel implements ActionListener {
 			searchButton.setLabel("Search");
 			closeButton.setLabel("Close");
 			closeButton2.setLabel("Close");
+			aboutButton.setLabel("About");
 			german.setLabel("Ger");
 			back.setLabel("Back");
 			ger = false;
@@ -388,8 +402,9 @@ public class SuluSearch extends Panel implements ActionListener {
 			origin.setText("Gefunden in der Datei: ");
 			hits.setText("Haufigkeit: ");
 			searchButton.setLabel("Suchen");
-			closeButton.setLabel("Schleissen");
-			closeButton2.setLabel("Schleissen");
+			closeButton.setLabel("Schliessen");
+			closeButton2.setLabel("Schliessen");
+			aboutButton.setLabel("Info");
 			german.setLabel("Deu");
 			back.setLabel("Zurueck");
 			ger = true;
@@ -400,6 +415,12 @@ public class SuluSearch extends Panel implements ActionListener {
 			wrongFile = "Leider handelt es sich hierbei nicht um eine gueltige Datei!";
 			unvalidDir = "Ungueltiges oder leeres Verzeichnis!";
 		}
+	}
+	
+	public boolean displayAboutButton () {
+		boolean status = true;
+		ImgPanel P=new ImgPanel();
+		return status;
 	}
 
 	@Override
@@ -419,7 +440,7 @@ public class SuluSearch extends Panel implements ActionListener {
 		f.addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
-				System.exit(0);
+					System.exit(0);
 			}
 		});
 		f.pack();

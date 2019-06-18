@@ -43,6 +43,7 @@ public class suluTests {
 	  //    wiederholte aufrufen der Artikel-Suchfunktion erfolgt, welche bereits er-
 	  //	folgreich getestet wurde.
 	 
+	  //bestanden
 	  @Test
 	  public void aboutButtonTest() {
 		  s = new SuluSearch(); 
