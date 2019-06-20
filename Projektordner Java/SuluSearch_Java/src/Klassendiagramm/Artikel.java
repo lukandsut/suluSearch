@@ -9,57 +9,91 @@
 
 package Klassendiagramm;
 
+//Start of user code for imports
 import java.io.*;
+//End of user code for imports
+
 /**
- * Class Artikel
+ * Class Artikel<br />
  * 
  * @author Team7
  */
 public class Artikel {
+	// Owned attributes
 	public File pfad;
 	public String name;
-/**
- * Artikeleigenschaften
- * @param f ist ein Dateipfad des Artikels
- * @param s ist der Name der Datei
- */
+
+	// Start of user code for extra fields
+	// End of user code for extra fields
+
+	/**
+	 * Default constructor
+	 */
 	public Artikel(File f, String s) {
+		// Start of user code for the default constructor
+
+		// Attributes TODO
 		;
 		this.name = s;
 		this.pfad = f;
+		// End of user code for the default constructor
 	}
 
-/**
- * returns the value of the path
- * @return Pfad 
- */
+	// Start of user code for parameterized constructors
+	// End of user code for parameterized constructors
+
+	// Accessors
+	/**
+	 * Return Pfad
+	 * 
+	 * @return String
+	 */
 	public File getPfad() {
+		// Start of user code for Artikel.getPfad():String
 		return pfad;
+		// End of user code
 	}
 
 	/**
-	 * Set the value of the path
+	 * Set the value of Pfad
 	 * 
 	 * @param Pfad
 	 */
 	public void setPfad(File Pfad) {
+		// Start of user code for Artikel.setPfad(String)
 		this.pfad = Pfad;
-	}
-
-/**
- * returns the name of the path
- * @return name
- */
-	public String getName() {
-		return name;
+		// End of user code
 	}
 
 	/**
-	 * Sets the value of Text
+	 * Return Text
+	 * 
+	 * @return String
+	 */
+	public String getName() {
+		// Start of user code for Artikel.getText():String
+		return name;
+		// End of user code
+	}
+
+	/**
+	 * Set the value of Text
 	 * 
 	 * @param Text
 	 */
 	public void setName(String Text) {
+		// Start of user code for Artikel.setText(String)
 		this.name = Text;
+		// End of user code
 	}
+
+	// Start of user code for extra methods
+	// End of user code for extra methods
+
+	// Start of user code for Artikel.main
+	/*
+	 * public static void main (String[] args) { }
+	 */
+	// End of user code
+
 }

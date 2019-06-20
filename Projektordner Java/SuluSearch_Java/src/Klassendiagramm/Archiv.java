@@ -9,36 +9,45 @@
 
 package Klassendiagramm;
 
+//Start of user code for imports
 import java.io.*;
 import java.util.*;
+//End of user code for imports
 
 /**
- * Class Archiv
+ * Class Archiv<br />
  * 
  * @author Team7
  */
 public class Archiv extends Artikel {
+	// Owned attributes
 
 	public Artikel artikel[];
 
+	// Start of user code for extra fields
 	private int i;
 	private int j;
+	// End of user code for extra fields
+
 	/**
-	 * Archiv erbt von Artikel
-	 * @param f ist der Pfad
-	 * @param s ist der Name
+	 * Default constructor
 	 */
 	public Archiv(File f, String s) {
+		// Start of user code for the default constructor
 		super(f, s);
 		i = 0;
 		j = 0;
 		artikel = new Artikel[30];
 		this.fillArray(f);
-}
-/**
- * schreibt alle Dateipfade, die auf ".txt" enden, aus einem Verzeichnis in eine Liste
- * @param f ist der Name
- */
+		// Attributes TODO
+
+		// End of user code for the default constructor
+	}
+
+	// Start of user code for parameterized constructors
+	// End of user code for parameterized constructors
+
+	// Accessors
 	public void fillArray(File f) {
 		File list[] = f.listFiles();
 		if (list != null) {
@@ -59,10 +68,6 @@ public class Archiv extends Artikel {
 		 */
 	}
 
-	/**
-	 * returnt einen Artikel aus der Liste
-	 * @return artikel[j]
-	 */
 	public Artikel getArtikel() {
 		if (artikel[j] != null)
 			return artikel[j];
@@ -70,10 +75,6 @@ public class Archiv extends Artikel {
 			return null;
 	}
 
-	/**
-	 * returnt den nächsten Artikel aus der Liste (Button next/nächster)
-	 * @return artikel[j]
-	 */
 	public Artikel nextArtikel() {
 		if (j < i - 1) {
 			j++;
@@ -81,10 +82,7 @@ public class Archiv extends Artikel {
 		} else
 			return null;
 	}
-/**
- * returnt den vorherigen Artikel aus der Liste (Button back/zurück)
- * @return artikel[j]
- */
+
 	public Artikel previousArtikel() {
 		if (j > 0) {
 			j--;
@@ -92,11 +90,17 @@ public class Archiv extends Artikel {
 		} else
 			return null;
 	}
-/**
- * Länge des Artikels in byte
- * @return i
- */
+
 	public Byte getAnz() {
 		return (byte) i;
 	}
+	// Start of user code for extra methods
+	// End of user code for extra methods
+
+	// Start of user code for Archiv.main
+	/*
+	 * public static void main (String[] args) { }
+	 */
+	// End of user code
+
 }
