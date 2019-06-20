@@ -1,13 +1,5 @@
-/*******************************************************************************
- * Copyright (c) 2007 TOPCASED. All rights reserved. This program
- * and the accompanying materials are made available under the terms of the
- * Eclipse Public License v1.0 which accompanies this distribution, and is
- * available at http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors: Topcased contributors and others - initial API and implementation
-*******************************************************************************/
-
 package Klassendiagramm;
+
 
 import java.io.*;
 import java.util.Scanner;
@@ -21,9 +13,10 @@ import javax.swing.text.DefaultHighlighter;
 import javax.swing.text.Highlighter;
 import javax.swing.text.Highlighter.HighlightPainter;
 
+//End of user code for imports
 
 /**
- * Class SuluSearch
+ * Class SuluSearch<br />
  * 
  * @author Team7
  */
@@ -53,6 +46,7 @@ public class SuluSearch extends Panel implements ActionListener {
 	Button back;
 	Button arrow1;
 	Button arrow2;
+	Button aboutButton;
 	Panel mainscreen;
 	Panel resultscreen;
 	GridBagConstraints c;
@@ -74,7 +68,6 @@ public class SuluSearch extends Panel implements ActionListener {
 	Matcher matcher;
 	Pattern pattern;
 
-
 	public SuluSearch() {
 		// Layout
 		this.setFont(new Font("MyFond", Font.PLAIN, 24));
@@ -88,16 +81,18 @@ public class SuluSearch extends Panel implements ActionListener {
 		resultscreen.setLayout(gl);
 		this.add(mainscreen, "mainscreen");
 		this.add(resultscreen, "resultscreen");
+		
+		 
 
 		// Components
-		lSulu = new Label("suluSearch");
+		lSulu = new Label("SuluSearch");
 		lSulu2 = new Label(lSulu.getText());
 		lFile = new Label("Bitte einen Datei- oder Verzeichnisnamen eingeben!");
 		lSearchTerm = new Label("Bitte einen Suchbegriff eingeben");
 		results = new Label("Suchergebnisse: ");
 		origin = new Label("Gefunden in der Datei: ");
 		trueOrigin = new Label("");
-		hits = new Label("Häufigkeit: ");
+		hits = new Label("Haufigkeit: ");
 		trueHits = new Label("");
 		tfSearchTerm = new TextField();
 		tfFile = new TextField();
@@ -108,28 +103,30 @@ public class SuluSearch extends Panel implements ActionListener {
 		painter = new DefaultHighlighter.DefaultHighlightPainter(Color.RED);
 		searchButton = new Button("Suchen");
 		searchButton.addActionListener(this);
-		closeButton = new Button("Schließen");
+		closeButton = new Button("Schliessen");
 		closeButton.addActionListener(this);
-		closeButton2 = new Button("Schließen");
+		closeButton2 = new Button("Schliessen");
 		closeButton2.addActionListener(this);
 		german = new Button("Deu");
 		german.addActionListener(this);
 		english = new Button("Eng");
 		english.addActionListener(this);
-		back = new Button("Zurück");
+		back = new Button("Zurueck");
 		back.addActionListener(this);
 		arrow1 = new Button("-->");
 		arrow1.addActionListener(this);
 		arrow2 = new Button("<--");
 		arrow2.addActionListener(this);
-		error1 = "Sie müssen einen Wert für Suchwort und Datei festlegen!";
+		aboutButton  = new Button("Info");
+		aboutButton.addActionListener(this);
+		error1 = "Sie muessen einen Wert fuer Suchwort und Datei festlegen!";
 		error3 = "Ein Fehler ist beim Lesen folgender Datei aufgetreten: ";
 		hitcount = 0;
 		linecount = 0;
 		lLine = "Linie: ";
 		noResults = "Es wurden in der Datei keine Ergebnisse zu diesem Suchwort gefunden!";
-		wrongFile = "Leider handelt es sich hierbei nicht um eine gültige Datei!";
-		unvalidDir = "Ungültiges oder leeres Verzeichnis!";
+		wrongFile = "Leider handelt es sich hierbei nicht um eine gueltige Datei!";
+		unvalidDir = "Ungueltiges oder leeres Verzeichnis!";
 		x = y = 1;
 		currPage = new Label(x + "/" + y);
 
@@ -165,15 +162,18 @@ public class SuluSearch extends Panel implements ActionListener {
 		gl.setConstraints(tfSearchTerm, c);
 		mainscreen.add(tfSearchTerm);
 		c.gridy = 6;
-		c.gridwidth = 2;
-		c.ipadx = 200;
+		c.gridwidth = 3;
+		c.ipadx = 100;
 		c.insets = new Insets(10, 15, 10, 15);
 		c.anchor = GridBagConstraints.LINE_START;
 		gl.setConstraints(searchButton, c);
 		mainscreen.add(searchButton);
-		c.anchor = GridBagConstraints.LINE_END;
+		c.anchor = GridBagConstraints.CENTER;
 		gl.setConstraints(closeButton, c);
 		mainscreen.add(closeButton);
+		c.anchor = GridBagConstraints.LINE_END;
+		gl.setConstraints(aboutButton, c);
+		mainscreen.add(aboutButton);
 
 		// resultscreen
 		c.anchor = GridBagConstraints.CENTER;
@@ -240,6 +240,7 @@ public class SuluSearch extends Panel implements ActionListener {
 		resultscreen.add(closeButton2);
 	}
 
+	// Actionlisteners
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -269,7 +270,7 @@ public class SuluSearch extends Panel implements ActionListener {
 		else if (e.getSource() == back) {
 			hitcount = 0;
 			linecount = 0;
-			cl.first(this);
+			cl.show(this, "mainscreen");
 		}
 
 		else if (e.getSource() == english && ger) {
@@ -297,15 +298,16 @@ public class SuluSearch extends Panel implements ActionListener {
 				this.search(art, new Suchwort(searchTerm));
 			}
 		}
+		
+		else if (e.getSource() == aboutButton) {
+			this.displayAboutButton();
+		}
 	}
 
+	// Methods
 
-/**
- * Suchfunktion
- * @param f ist ein Dateipfad des Artikels
- * @param sw ist das Suchwort
- * @return hitcount Trefferzahl
- */
+	/**
+	 */
 	public int search(Artikel f, Suchwort sw) {
 
 		StringBuilder sb = new StringBuilder();
@@ -349,7 +351,8 @@ public class SuluSearch extends Panel implements ActionListener {
 			trueHits.setText(Integer.toString(hitcount));
 			trueOrigin.setText(f.getName());
 			reader.close();
-			cl.last(this);
+			cl.show(this, "resultscreen");
+			
 
 		} catch (Exception e) {
 			myError(error3 + f.getName());
@@ -358,21 +361,17 @@ public class SuluSearch extends Panel implements ActionListener {
 		}
 
 		return hitcount;
-	} // ./bible/bible_part1.txt
+	} 
 
-
+	/**
+	 */
 	public void close() {
 		System.exit(0);
 	}
-	
-	/**
-	 * 
-	 * @param err fehler ausgabe
-	 */
 
 	public void myError(String err) {
 		tfResults.setText(err);
-		cl.last(this);
+		cl.show(this, "resultscreen");
 	}
 
 	public void changeLanguage() {
@@ -386,6 +385,7 @@ public class SuluSearch extends Panel implements ActionListener {
 			searchButton.setLabel("Search");
 			closeButton.setLabel("Close");
 			closeButton2.setLabel("Close");
+			aboutButton.setLabel("About");
 			german.setLabel("Ger");
 			back.setLabel("Back");
 			ger = false;
@@ -400,20 +400,27 @@ public class SuluSearch extends Panel implements ActionListener {
 			lSearchTerm.setText("Bitte einen Suchbegriff eingeben");
 			results.setText("Suchergebnisse: ");
 			origin.setText("Gefunden in der Datei: ");
-			hits.setText("Häufigkeit: ");
+			hits.setText("Haufigkeit: ");
 			searchButton.setLabel("Suchen");
-			closeButton.setLabel("Schleißen");
-			closeButton2.setLabel("Schleißen");
+			closeButton.setLabel("Schliessen");
+			closeButton2.setLabel("Schliessen");
+			aboutButton.setLabel("Info");
 			german.setLabel("Deu");
-			back.setLabel("Zurück");
+			back.setLabel("Zurueck");
 			ger = true;
-			error1 = "Sie müssen einen Wert für Suchwort und Datei festlegen!";
+			error1 = "Sie muessen einen Wert fuer Suchwort und Datei festlegen!";
 			error3 = "Ein Fehler ist beim Lesen folgender Datei aufgetreten: ";
 			lLine = "Linie: ";
 			noResults = "Es wurden in der Datei keine Ergebnisse zu diesem Suchwort gefunden!";
-			wrongFile = "Leider handelt es sich hierbei nicht um eine gültige Datei!";
-			unvalidDir = "Ungültiges oder leeres Verzeichnis!";
+			wrongFile = "Leider handelt es sich hierbei nicht um eine gueltige Datei!";
+			unvalidDir = "Ungueltiges oder leeres Verzeichnis!";
 		}
+	}
+	
+	public boolean displayAboutButton () {
+		boolean status = true;
+		ImgPanel P=new ImgPanel();
+		return status;
 	}
 
 	@Override
@@ -422,7 +429,10 @@ public class SuluSearch extends Panel implements ActionListener {
 		return d;
 	}
 
+	// Start of user code for extra methods
+	// End of user code for extra methods
 
+	// Start of user code for SuluSearch.main
 	public static void main(String[] args) {
 		SuluSearch s = new SuluSearch();
 		Frame f = new Frame("SuluSearch");
@@ -430,7 +440,7 @@ public class SuluSearch extends Panel implements ActionListener {
 		f.addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
-				System.exit(0);
+					System.exit(0);
 			}
 		});
 		f.pack();
@@ -438,4 +448,9 @@ public class SuluSearch extends Panel implements ActionListener {
 
 	}
 
+	// End of user code
+
 }
+
+
+	

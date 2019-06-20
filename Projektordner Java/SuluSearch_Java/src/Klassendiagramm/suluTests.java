@@ -7,22 +7,19 @@ package Klassendiagramm;
 import static org.junit.Assert.assertTrue;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.nio.file.*;
 import org.junit.Test;
 
 /**
- * 
- * @author Team7
+ * @author mariu
  *
  */
-
 public class suluTests {
 	Artikel art1 = new Artikel(new File("./bible/bible_part1.txt"), "./bible/bible_part1.txt");
 	static Archiv arch1 = new Archiv(new File("./bible"), "./bible");
 	static Suchwort sw = new Suchwort("cinnamon");
 	static SuluSearch s;
 	static int hits = 0;
+	boolean isDisplayed = false;
 
 	//bestanden
 	@Test
@@ -46,5 +43,12 @@ public class suluTests {
 	  //    wiederholte aufrufen der Artikel-Suchfunktion erfolgt, welche bereits er-
 	  //	folgreich getestet wurde.
 	 
+	  //bestanden
+	  @Test
+	  public void aboutButtonTest() {
+		  s = new SuluSearch(); 
+		  isDisplayed = s.displayAboutButton();
+		  assertTrue(isDisplayed); 
+	  }
 
 }
